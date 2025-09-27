@@ -3,12 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Usable Image Stuff Program</title>
+
     <link rel="stylesheet" href="style.css" />
-    <script src="main.js" defer></script>
+
+    <script type="module" src="main.js" defer></script>
   </head>
   <body>
     <main>
+      <div id="context-menu">
+        <button onclick="selectCropTool()" class="tool-button">Crop</button>
+        <button onclick="confirmCrop()" class="tool-button">
+          Confirm Crop
+        </button>
+      </div>
+
       <canvas width="800" height="600" id="canvas"></canvas>
     </main>
   </body>

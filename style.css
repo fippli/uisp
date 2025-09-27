@@ -1,4 +1,39 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+}
+
 canvas {
   background-repeat: repeat;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAEKADAAQAAAABAAAAEAAAAAAXnVPIAAAAMklEQVQ4EWP8DwQMeMCXb9/xyDIwMOGVJUJy1IDBEIgshOKZh4sTb2SORuNgiEaKYwEAzyQJ/yVn/CUAAAAASUVORK5CYII=");
+}
+
+#context-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.tool-button {
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  /* border-radius: 4px; */
 }
