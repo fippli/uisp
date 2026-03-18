@@ -2,13 +2,14 @@ console.log("> Welcome to the Usable Image Stuff Program!");
 
 import { CanvasImage } from "./canvas-image.js";
 import { CropArea } from "./crop-area.js";
+import { ResizeArea } from "./resize-area.js";
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const cropArea = new CropArea(ctx);
 const img = new CanvasImage();
 const contextMenuElement = document.getElementById("context-menu");
-
+const resizeArea = new ResizeArea();
 let selectedTool = "none";
 let contextMenu = false;
 
@@ -17,6 +18,12 @@ canvas.addEventListener("mousedown", (event) => {
     switch (selectedTool) {
       case "crop": {
         return cropArea.start({
+          x: event.clientX,
+          y: event.clientY,
+        });
+      }
+      case "resize": {
+        return resizeArea.start({
           x: event.clientX,
           y: event.clientY,
         });
@@ -33,12 +40,22 @@ canvas.addEventListener("mousedown", (event) => {
 });
 
 canvas.addEventListener("mousemove", (event) => {
+  const mousePosition = { x: event.clientX, y: event.clientY };
   switch (selectedTool) {
     case "crop": {
       return cropArea.expand({
         x: event.clientX,
         y: event.clientY,
       });
+    }
+
+    case "resize": {
+      if (resizeArea.collidesWithBorder(mousePosition)) {
+        resizeArea.activateCollidedBorder(mousePosition);
+      } else {
+        resizeArea.deactivateBorders();
+      }
+      return;
     }
     default: {
       return;
@@ -99,6 +116,9 @@ const init = () => {
     }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     img.render(ctx);
+    if (selectedTool === "resize") {
+      resizeArea.render(ctx, img);
+    }
     cropArea.render(ctx);
     requestAnimationFrame(render);
   };
@@ -118,5 +138,11 @@ const confirmCrop = () => {
   img.crop(cropArea);
 };
 
+const selectResizeTool = () => {
+  selectedTool = "resize";
+  contextMenu = false;
+};
+
 window.selectCropTool = selectCropTool;
 window.confirmCrop = confirmCrop;
+window.selectResizeTool = selectResizeTool;

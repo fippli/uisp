@@ -4,22 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Usable Image Stuff Program</title>
+    <title>UISP - Usable Image Stuff Program</title>
+    <meta
+      name="description"
+      content="A browser-based image editing tool for quick image manipulation"
+    />
 
     <link rel="stylesheet" href="style.css" />
-
-    <script type="module" src="main.js" defer></script>
   </head>
   <body>
-    <main>
-      <div id="context-menu">
-        <button onclick="selectCropTool()" class="tool-button">Crop</button>
-        <button onclick="confirmCrop()" class="tool-button">
-          Confirm Crop
-        </button>
-      </div>
+    <canvas id="canvas"></canvas>
 
-      <canvas width="800" height="600" id="canvas"></canvas>
-    </main>
+    <div id="drop-hint" class="drop-hint">
+      <div class="drop-hint-content">
+        <svg
+          class="drop-hint-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="17 8 12 3 7 8" />
+          <line x1="12" y1="3" x2="12" y2="15" />
+        </svg>
+        <p>Drop images here to edit</p>
+        <p class="drop-hint-subtitle">or scroll to pan the canvas</p>
+      </div>
+    </div>
+
+    <script type="module" src="src/main.ts"></script>
   </body>
 </html>

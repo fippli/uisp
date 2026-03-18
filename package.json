@@ -1,13 +1,22 @@
 {
   "name": "uisp",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Usable Image Stuff Program - Browser-based image editor",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx serve ./"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": [],
+  "keywords": [
+    "image",
+    "editor",
+    "canvas"
+  ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "vite": "^7.1.7"
+  }
 }
